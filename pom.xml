@@ -14,7 +14,11 @@
     <name>kaddem</name>
     <description>kaddem</description>
     <distributionManagement>
-
+    <repository>
+        <id>deploymentRepo</id>
+        <name>Nexus Repository</name>
+        <url>http://192.168.33.10:8081/repository/maven-releases/</url>
+    </repository>
 </distributionManagement>
     <properties>
         <java.version>1.8</java.version>
@@ -51,11 +55,7 @@
         </dependency>
 
     </dependencies>
-    <repository>
-        <id>deploymentRepo</id>
-        <name>Nexus Repository</name>
-        <url>http://192.168.33.10:8081/repository/maven-releases/</url>
-    </repository>
+    
     <build>
         <plugins>
             <plugin>
