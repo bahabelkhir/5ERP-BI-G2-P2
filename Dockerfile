@@ -8,7 +8,7 @@ ARG ARTIFACT_PATH=tn/esprit/spring/kaddem/1.0/kaddem-1.0.jar
 RUN mkdir /app
 RUN touch testing
 # Download the JAR from Nexus and copy it into the container
-RUN wget -O /app/gestion-station-ski-1.0.jar $NEXUS_URL/$ARTIFACT_PATH
+RUN wget -O /app/kaddem-1.0.jar $NEXUS_URL/$ARTIFACT_PATH
 
 EXPOSE 8082
 
