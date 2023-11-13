@@ -83,7 +83,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>mejrimayssa_g5_kaddem</finalName>
     </build>
 
 </project>
