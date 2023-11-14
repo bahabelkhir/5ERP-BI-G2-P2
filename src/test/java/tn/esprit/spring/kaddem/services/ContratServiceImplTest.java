@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.kaddem.entities.Contrat;
+import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
@@ -13,6 +14,7 @@ import tn.esprit.spring.kaddem.services.ContratServiceImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -52,6 +54,7 @@ public class ContratServiceImplTest {
         // Assurez-vous que le résultat correspond à ce que vous attendez
         assertEquals(contrats, result);
     }
+
     @Test
     public void testRetrieveContrat() {
         // Créez un contrat fictif pour simuler les données de la base de données
@@ -86,9 +89,6 @@ public class ContratServiceImplTest {
         // Assurez-vous que le résultat correspond à ce que vous attendez
         assertEquals(5, result); // Remplacez par la valeur attendue
     }
-
-
-
     // Ajoutez d'autres tests pour les autres méthodes de votre service
     // Assurez-vous de tester différents scénarios, y compris les cas limites et les erreurs attendues
 }
