@@ -1,12 +1,13 @@
 package tn.esprit.spring.kaddem.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
+@Builder
 @Entity
 public class Equipe implements Serializable{
     @Id

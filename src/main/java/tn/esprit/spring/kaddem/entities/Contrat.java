@@ -1,12 +1,13 @@
 package tn.esprit.spring.kaddem.entities;
 
+import lombok.Builder;
 import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
-
+@Builder
 @Entity
 @ToString
 public class Contrat implements Serializable{
