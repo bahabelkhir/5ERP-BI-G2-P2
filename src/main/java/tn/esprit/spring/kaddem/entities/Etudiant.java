@@ -2,7 +2,8 @@ package tn.esprit.spring.kaddem.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,9 +11,13 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Builder
-@SuppressWarnings("SpellCheckingInspection")
 @Entity
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@Builder
+@AllArgsConstructor
 public class Etudiant implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

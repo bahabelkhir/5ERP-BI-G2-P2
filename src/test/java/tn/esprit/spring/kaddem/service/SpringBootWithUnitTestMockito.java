@@ -1,13 +1,10 @@
 package tn.esprit.spring.kaddem.service;
-
 import lombok.extern.slf4j.Slf4j;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,8 +23,7 @@ import java.util.List;
 @Slf4j
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-
-public class TestAvecMockito {
+public class SpringBootWithUnitTestMockito {
     @Autowired
     private EquipeRepository equipeRepository;
     @Autowired
@@ -38,40 +34,40 @@ public class TestAvecMockito {
     EtudiantServiceImpl etudiantService;
 
 
-    Etudiant e = Etudiant.builder().nomE("Test").prenomE("Test").op(Option.valueOf("SIM")).build();
+    Etudiant e = Etudiant.builder().nomE("TEST").prenomE("test").op(Option.valueOf("SIM")).build();
     List<Etudiant> list= new ArrayList<Etudiant>() {
         {
-            add(Etudiant.builder().nomE("e").prenomE("ee").op(Option.valueOf("SIM")).build());
-            add(Etudiant.builder().nomE("b").prenomE("bb").op(Option.valueOf("GAMIX")).build());
+            add(Etudiant.builder().nomE("TEST2").prenomE("TEST2").op(Option.valueOf("SIM")).build());
+            add(Etudiant.builder().nomE("TEST3").prenomE("TEST3").op(Option.valueOf("GAMIX")).build());
         }
     };
 
     @Test
     public void testRetrieveAllEtudiants() {
-        Mockito.when(etudiantRepository.findAll()).thenReturn(list);
+        when(etudiantRepository.findAll()).thenReturn(list);
         List<Etudiant> result = etudiantService.retrieveAllEtudiants();
-        Mockito.verify(etudiantRepository, Mockito.times(1)).findAll();
+        verify(etudiantRepository, times(1)).findAll();
     }
 
     @Test
     public void testAddEtudiant() {
-        Mockito.when(etudiantRepository.save(ArgumentMatchers.any(Etudiant.class))).thenReturn(e);
+        when(etudiantRepository.save(any(Etudiant.class))).thenReturn(e);
         Etudiant result = etudiantService.addEtudiant(e);
-        Mockito.verify(etudiantRepository, Mockito.times(1)).save(e);
+        verify(etudiantRepository, times(1)).save(e);
     }
 
     @Test
     public void testUpdateEtudiant() {
-        Mockito.when(etudiantRepository.save(ArgumentMatchers.any(Etudiant.class))).thenReturn(e);
+        when(etudiantRepository.save(any(Etudiant.class))).thenReturn(e);
         Etudiant result = etudiantService.updateEtudiant(e);
-        Mockito.verify(etudiantRepository, Mockito.times(1)).save(e);
+        verify(etudiantRepository, times(1)).save(e);
     }
 
     @Test
     public void testRetrieveEtudiant() {
-        Mockito.when(etudiantRepository.findById(ArgumentMatchers.any(Integer.class))).thenReturn(java.util.Optional.ofNullable(e));
+        when(etudiantRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.ofNullable(e));
         Etudiant result = etudiantService.retrieveEtudiant(1);
-        Mockito.verify(etudiantRepository, Mockito.times(1)).findById(1);
+        verify(etudiantRepository, times(1)).findById(1);
     }
 
     @Test
@@ -82,21 +78,21 @@ public class TestAvecMockito {
         etudiantService.removeEtudiant(1);
 
         // Verify the expected behavior
-        Mockito.verify(etudiantRepository, Mockito.times(1)).delete(ArgumentMatchers.any(Etudiant.class));
+        verify(etudiantRepository, times(1)).delete(any(Etudiant.class));
     }
 
     @Test
     public void testAssignEtudiantToDepartement() {
         // Mock the behavior of the repository
         Etudiant etudiant = Etudiant.builder().idEtudiant(1).build();
-        Mockito.when(etudiantRepository.findById(ArgumentMatchers.any(Integer.class))).thenReturn(java.util.Optional.ofNullable(etudiant));
+        when(etudiantRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.ofNullable(etudiant));
 
         // Invoke the service method
         etudiantService.assignEtudiantToDepartement(1, 1);
 
         // Verify the expected behavior
-        Mockito.verify(etudiantRepository, Mockito.times(1)).findById(1);
-        Mockito.verify(etudiantRepository, Mockito.times(1)).save(etudiant);
+        verify(etudiantRepository, times(1)).findById(1);
+        verify(etudiantRepository, times(1)).save(etudiant);
     }
 
     @Test
@@ -104,13 +100,13 @@ public class TestAvecMockito {
         // Mock the behavior of the repository
         Contrat contrat = Contrat.builder().idContrat(1).build();
         Equipe equipe = Equipe.builder().idEquipe(1).build();
-        Mockito.when(contratRepository.findById(ArgumentMatchers.any(Integer.class))).thenReturn(java.util.Optional.ofNullable(contrat));
-        Mockito.when(equipeRepository.findById(ArgumentMatchers.any(Integer.class))).thenReturn(java.util.Optional.ofNullable(equipe));
+        when(contratRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.ofNullable(contrat));
+        when(equipeRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.ofNullable(equipe));
 
         // Invoke the service method
         Etudiant result = etudiantService.addAndAssignEtudiantToEquipeAndContract(e, 1, 1);
-        Mockito.verify(contratRepository, Mockito.times(1)).findById(1);
-        Mockito.verify(equipeRepository, Mockito.times(1)).findById(1);
-        Mockito.verify(etudiantRepository, Mockito.times(1)).save(result);
+        verify(contratRepository, times(1)).findById(1);
+        verify(equipeRepository, times(1)).findById(1);
+        verify(etudiantRepository, times(1)).save(result);
     }
 }
