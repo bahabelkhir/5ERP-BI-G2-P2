@@ -73,7 +73,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>5ARCTIC5-G1-DevopsProject</finalName>
+        <finalName>5ERP-BI-G2-P2-DevopsProject</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
