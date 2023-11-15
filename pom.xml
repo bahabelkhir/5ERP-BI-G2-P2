@@ -80,6 +80,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>mohamedazizbenzina-5erp-bi7-g2:1.0</finalName>
     </build>
 
 </project>
